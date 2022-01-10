@@ -1,0 +1,39 @@
+version: '3'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./hosts:/etc/nginx/conf.d
+      - ./src:/var/www
+      - ./logs/nginx:/var/log/nginx
+    links:
+      - php
+  php:
+    container_name: php-fpm
+    build: ./images/php
+    links:
+      - mysql
+    volumes:
+      - ./src:/var/www
+  mysql:
+    container_name: mysql
+    image: mysql:5.7.36
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_USER=laravel"
+      - "MYSQL_PASSWORD=secret"
+      - "MYSQL_DATABASE=app"
+    ports:
+      - "33061:3306"
+  nodejs:
+    image: node:17-alpine3.13
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+    tty: true
