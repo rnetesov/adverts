@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             @include('admin.partials.nav')
             <form action="{{ route('admin.users.store') }}" method="post">
                 @csrf

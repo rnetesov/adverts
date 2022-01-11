@@ -1,19 +1,10 @@
 @extends('layouts.app')
 
-@section('styles')
-    @include('admin.partials.styles')
-@endsection()
-
-@section('scripts')
-    @include('admin.partials.scripts')
-@endsection
-
-
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             @include('admin.partials.nav')
-            <a href="{{ route('admin.users.create') }}" class="btn btn-success mt-2">Create</a>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-success">Create</a>
             <form action="" method="get">
                 <table class="table table-striped mt-2 table-bordered">
                     <thead>
@@ -144,3 +135,10 @@
     </div>
 @endsection
 
+@section('styles')
+    @include('admin.partials.styles')
+@endsection()
+
+@section('scripts')
+    @include('admin.partials.scripts')
+@endsection

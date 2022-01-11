@@ -4,17 +4,9 @@
     {{ Breadcrumbs::render('admin.regions.show', $region) }}
 @endsection
 
-@section('styles')
-    @include('admin.partials.styles')
-@endsection()
-
-@section('scripts')
-    @include('admin.partials.scripts')
-@endsection
-
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             @include('admin.partials.nav')
 
             <div class="d-flex mt-2">
@@ -52,4 +44,13 @@
 
         </div>
     </div>
+@endsection
+
+
+@section('styles')
+    @include('admin.partials.styles')
+@endsection()
+
+@section('scripts')
+    @include('admin.partials.scripts')
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Region;
+use App\Models\Category;
 use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 
 Breadcrumbs::for('home', function ($trail) {
@@ -22,14 +23,13 @@ Breadcrumbs::for('cabinet.home', function ($trail) {
     $trail->push('User Cabinet', route('cabinet.home'));
 });
 
-/**
- * Admin users
- */
+//Admin
 Breadcrumbs::for('admin.home', function ($trail) {
     $trail->parent('home');
     $trail->push('Admin', route('admin.home'));
 });
 
+//Admin Users
 Breadcrumbs::for('admin.users.index', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Users', route('admin.users.index'));
@@ -51,9 +51,7 @@ Breadcrumbs::for('admin.users.create', function ($trail) {
     $trail->push('Create', route('admin.users.create'));
 });
 
-/**
- * Admin regions
- */
+//Admin Regions
 Breadcrumbs::for('admin.regions.index', function ($trail) {
     $trail->parent('admin.home');
     $trail->push('Regions', route('admin.regions.index'));
@@ -82,4 +80,36 @@ Breadcrumbs::for('admin.regions.edit', function ($trail, Region $region) {
     $trail->parent('admin.regions.show', $region);
     $trail->push('Edit', route('admin.regions.edit', $region));
 });
+
+//Admin Categories
+Breadcrumbs::for('admin.categories.index', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Categories', route('admin.categories.index'));
+});
+
+Breadcrumbs::for('admin.categories.create', function ($trail) {
+    $trail->parent('admin.home');
+    $trail->push('Create', route('admin.categories.create'));
+});
+
+Breadcrumbs::for('admin.categories.show', function ($trail, Category $category) {
+    if ($parent = $category->parent) {
+        $trail->parent('admin.categories.show', $parent);
+    } else {
+        $trail->parent('admin.categories.index');
+    }
+
+    $trail->push($category->name, route('admin.categories.show', $category));
+});
+
+Breadcrumbs::for('admin.categories.edit', function ($trail, Category $category) {
+    if ($parent = $category->parent) {
+        $trail->parent('admin.categories.show', $parent);
+    } else {
+        $trail->parent('admin.categories.index');
+    }
+
+    $trail->push($category->name, route('admin.categories.show', $category));
+});
+
 

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             @include('admin.partials.nav')
             <div class="d-flex mt-2">
                 <a class="btn btn-primary mr-1" href="{{ route('admin.users.edit', $user) }}">Edit</a>

@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-12">
             <form action="{{ route('admin.regions.update', $region) }}" method="post">
                 @csrf
                 @method('patch')
